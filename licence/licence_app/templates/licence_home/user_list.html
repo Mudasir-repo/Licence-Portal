@@ -1,0 +1,37 @@
+<!-- Extend the base layout from the layout html-->
+{% extends "licence_home/layout.html" %}
+
+{% block title %} User Document {% endblock %}
+
+{% block content %}
+   <h1 class="text-center">User Documents</h1>
+
+   <a class= "btn btn-primary" href ="{% url 'user_form'%}">Add new user</a>
+   <table class="table table-bordered table-stripped">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Images</th>
+            <th>Document</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for userdata in Users %}
+        <tr>
+            <td>{{ userdata.id }}</td>
+            <td>{{ userdata.name }}</td>
+            <td><img src="{{ userdata.image.url }}" width="100" height="100"></td>
+            <td><embed class="pdf" src="{{ userdata.pdf.url }}" width="100" height="100"></td>
+            <td> {% if userdata.user == user %}
+                <a href="{% url 'doc_update' userdata.id %}" class="btn btn-warning">Update</a>
+                <a href="{% url 'doc_delete' userdata.id %}" class="btn btn-danger">Delete</a>
+                {% endif %}
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+   </table>
+{% endblock %}
+ 

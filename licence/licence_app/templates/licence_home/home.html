@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <h2>Home</h2>
+        <p>Welcome, {{request.user.username}}!</p>
+        <a href="{% url 'user_form' %}">Add user!</a>
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
