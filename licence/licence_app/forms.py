@@ -5,6 +5,7 @@ from .models import Licence_Data
 from django.contrib.auth.models import User
 
 class RegisterForm(forms.ModelForm):
+    user_type = forms.ChoiceField(choices = [('3','USER'), ('2','MANAGER'), ('1','ADMIN')], initial='3')
     password = forms.CharField(widget=forms.PasswordInput)
     password_confirm = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
 

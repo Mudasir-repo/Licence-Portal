@@ -5,8 +5,9 @@
 
 {% block content %}
    <h1 class="text-center">User Documents</h1>
-
-   <a class= "btn btn-primary" href ="{% url 'user_form'%}">Add new user</a>
+   {% if user.user_type == 'ADMIN' or user.user_type == 'MANAGER' %}
+   <a class= "btn btn-primary" href ="{% url 'user_form'%}">Add Details</a>
+   {% endif %}
    <table class="table table-bordered table-stripped">
     <thead class="thead-dark">
         <tr>
@@ -17,15 +18,15 @@
         </tr>
     </thead>
     <tbody>
-        {% for userdata in Users %}
+        {% for user in Users %}
         <tr>
-            <td>{{ userdata.id }}</td>
-            <td>{{ userdata.name }}</td>
-            <td><img src="{{ userdata.image.url }}" width="100" height="100"></td>
-            <td><embed class="pdf" src="{{ userdata.pdf.url }}" width="100" height="100"></td>
-            <td> {% if userdata.user == user %}
-                <a href="{% url 'doc_update' userdata.id %}" class="btn btn-warning">Update</a>
-                <a href="{% url 'doc_delete' userdata.id %}" class="btn btn-danger">Delete</a>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td><img src="{{ user.image.url }}" width="100" height="100"></td>
+            <td><embed class="pdf" src="{{ user.pdf.url }}" width="100" height="100"></td>
+            <td> {% if user.username == username %}
+                <a href="{% url 'doc_update' user.id %}" class="btn btn-warning">Update</a>
+                <a href="{% url 'doc_delete' user.id %}" class="btn btn-danger">Delete</a>
                 {% endif %}
             </td>
             

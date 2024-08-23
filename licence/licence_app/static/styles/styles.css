@@ -9,11 +9,10 @@ body{
     height: 100vh;
 }
 
-.container {
-    background-color: grey;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px black;
+.Heading {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    justify-content: left;
 }
 
 h2 {
